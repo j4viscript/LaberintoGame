@@ -1,0 +1,12 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#jueguito{
+    display: flex;
+    justify-content: center;
+}
+#mygame{
+    background-image: url("/src/img/pasto.jpg");
+}
