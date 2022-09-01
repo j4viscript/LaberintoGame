@@ -39,8 +39,8 @@ function start(){
     ctx=c.getContext("2d");
     player1 = new Cuadrado(super_x, super_y, 60, 90, 'white');
 
-    backImage.src = '/src/img/pasto.png';
-    player.src = '/src/img/javiscript.png';
+    backImage.src = 'src/img/pasto.png';
+    player.src = 'src/img/javiscript.png';
 
 
     mob1 = new Cuadrado(240, 0, 50,50, 'white');
@@ -59,9 +59,9 @@ function start(){
     mobs2 = [mob4,mob5,mob6];
     mobs3 = [mob7,mob8,mob9];
     //mobs
-    creeper.src = '/src/img/mobs/creeperminecraft.jpeg';
-    zombie.src = '/src/img/mobs/zombieminecraft.jpg';
-    spider.src = '/src/img/mobs/spiderminecraft.jpeg';
+    creeper.src = 'src/img/mobs/creeperminecraft.jpeg';
+    zombie.src = 'src/img/mobs/zombieminecraft.jpg';
+    spider.src = 'src/img/mobs/spiderminecraft.jpeg';
     enderman.src = 'src/img/mobs/EnderMab.jpg';
 
 
@@ -157,7 +157,6 @@ document.addEventListener('keydown', function (e) {
     if(e.keyCode==68 || e.keyCode==39){
         playerdirection1 = 'right';
         player1.x += speed;
-
     }
 });
 
