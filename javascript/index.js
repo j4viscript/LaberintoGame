@@ -6,7 +6,7 @@ var player1=null;
 var direction1 = 'up';
 var playerdirection1 = 'right';
 var speed = 30;
-var mobSpeed = 10;
+var mobSpeed = 5;
 var player = new Image();   
 var play = new Audio();
 var gameover = new Audio();
@@ -20,7 +20,9 @@ var mob6 = null;
 var mob7 = null;
 var mob8 = null;
 var mob9 = null;
-var mobs = [];
+var mobs1 = [];
+var mobs2 = [];
+var mobs3 = [];
 var creeper = new Image();
 var zombie = new Image();
 var spider = new Image();
@@ -35,23 +37,27 @@ window.addEventListener('load', start);
 function start(){
     c=document.getElementById("mygame");
     ctx=c.getContext("2d");
-    player1 = new Cuadrado(super_x, super_y, 40, 40, 'white');
+    player1 = new Cuadrado(super_x, super_y, 60, 90, 'white');
 
     backImage.src = '/src/img/pasto.png';
     player.src = '/src/img/javiscript.png';
 
 
     mob1 = new Cuadrado(240, 0, 50,50, 'white');
-    mob2 = new Cuadrado(300, 50, 50,50, 'white');
-    mob3 = new Cuadrado(360, 0, 50,50, 'white');
-    mob4 = new Cuadrado(420, 50, 50,50, 'white');
-    mob5 = new Cuadrado(480, 0, 50,50, 'white');
-    mob6 = new Cuadrado(540, 50, 50,50, 'white');
-    mob7 = new Cuadrado(600, 0, 50,50, 'white');
-    mob8 = new Cuadrado(660, 0, 50,50, 'white');
-    mob9 = new Cuadrado(720, 0, 50,50, 'white');
+    mob2 = new Cuadrado(350, 0, 50,50, 'white');
+    mob3 = new Cuadrado(450, 0, 50,50, 'white');
 
-    mobs = [mob1,mob2,mob3,mob4, mob5, mob6, mob7,mob8, mob9];
+    mob4 = new Cuadrado(620, 0, 50,50, 'white');
+    mob5 = new Cuadrado(790, 0, 50,50, 'white');
+    mob6 = new Cuadrado(940, 0, 50,50, 'white');
+
+    mob7 = new Cuadrado(950, 700, 50,50, 'white');
+    mob8 = new Cuadrado(1120, 700, 50,50, 'white');
+    mob9 = new Cuadrado(1300, 700, 50,50, 'white');
+
+    mobs1 = [mob1,mob2,mob3];
+    mobs2 = [mob4,mob5,mob6];
+    mobs3 = [mob7,mob8,mob9];
     //mobs
     creeper.src = '/src/img/mobs/creeperminecraft.jpeg';
     zombie.src = '/src/img/mobs/zombieminecraft.jpg';
@@ -63,10 +69,9 @@ function start(){
 }
 function paint(){
     window.requestAnimationFrame(paint)
-    ctx.drawImage(backImage, 0,0,1200,700);
+    ctx.drawImage(backImage, 0,0,1500,700);
     //images
-    ctx.drawImage(player, player1.x, player1.y, 50,50);
-
+    ctx.drawImage(player, player1.x, player1.y, 90,90);
     //mobs
     ctx.drawImage(creeper, mob1.x, mob1.y, 50,50);
     ctx.drawImage(zombie, mob2.x, mob2.y, 50,50);
@@ -74,13 +79,13 @@ function paint(){
     ctx.drawImage(enderman, mob4.x, mob4.y, 50,50);
     ctx.drawImage(creeper, mob5.x, mob5.y, 50,50);
     ctx.drawImage(zombie, mob6.x, mob6.y, 50,50);
-    ctx.drawImage(spider, mob7.x, mob7.y, 50,50);
-    ctx.drawImage(enderman, mob8.x, mob8.y, 50,50);
+    ctx.drawImage(creeper, mob7.x, mob7.y, 50,50);
+    ctx.drawImage(zombie, mob8.x, mob8.y, 50,50);
     ctx.drawImage(enderman, mob9.x, mob9.y, 50,50);
     update();
 }
 function update(){
-    mobs.forEach(mob =>  {
+    mobs1.forEach(mob =>  {
         if (mob.y>700){
             mob.y=0;
         }
@@ -92,10 +97,41 @@ function update(){
         if(stop){
             mobSpeed = 0;
         }else{
-            counter % 2 == 0 ? mob.y += mobSpeed + generateRandomInteger(10) : mob.y += mobSpeed + generateRandomInteger(5)
-            counter ++
+            counter % 2 == 0 ? mob.y += mobSpeed + generateRandomInteger(1) : mob.y += mobSpeed + generateRandomInteger(20);
+            counter ++;
         }
-
+    });
+    mobs2.forEach(mob =>  {
+        if (mob.y<0){
+            mob.y=700;
+        }
+        if(player1.se_tocan(mob)){
+            speed = 0;
+            stop=true;
+            console.log("Si jala");
+        }
+        if(stop){
+            mobSpeed = 0;
+        }else{
+            counter % 2 == 0 ? mob.y -= mobSpeed + generateRandomInteger(1) : mob.y -= mobSpeed + generateRandomInteger(20);
+            counter ++;
+        }
+    });
+    mobs3.forEach(mob =>  {
+        if (mob.y>700){
+            mob.y=0;
+        }
+        if(player1.se_tocan(mob)){
+            speed = 0;
+            stop=true;
+            console.log("Si jala");
+        }
+        if(stop){
+            mobSpeed = 0;
+        }else{
+            counter % 2 == 0 ? mob.y += mobSpeed + generateRandomInteger(1) : mob.y += mobSpeed + generateRandomInteger(20);
+            counter ++;
+        }
     });
 }
 
