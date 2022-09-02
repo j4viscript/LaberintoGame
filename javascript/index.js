@@ -48,15 +48,12 @@ var sec = null;
 window.addEventListener('load', start);
 
 function timeCountdown() {
-    if (tiempo != -1 && !perder) {
+    if (tiempo != -1 && !perder && ganar==false) {
         min = Math.floor(tiempo / 60);
         sec = tiempo % 60;
         sec = sec < 10 ? '0' + sec : sec
         tiempo--;
-    }else{
-        perder=true;
     }
-
 }
 setInterval(timeCountdown, 1000);
 
