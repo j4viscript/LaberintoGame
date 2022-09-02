@@ -53,6 +53,9 @@ function timeCountdown() {
         sec = tiempo % 60;
         sec = sec < 10 ? '0' + sec : sec
         tiempo--;
+    }else if(!ganar){
+        stop=true
+        perder=true
     }
 }
 setInterval(timeCountdown, 1000);
